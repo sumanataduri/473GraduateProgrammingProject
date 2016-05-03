@@ -3,7 +3,7 @@
 Project is done using Angular Js as front end, Node JS and CouchDB as backend.
 Following are the steps to run this project.
 
-Step 1 : Execute Copy index.js,imdbserver.js and publicimdb folder files in local folder
+Step 1 : Copy index.js,imdbserver.js and publicimdb folder files to a local folder
 Step 2 : Execute index.js file in bash or command prompt using command "node index.js". It will create "movies" and "users" database            and inserts documents in movies database and single document in users database.
 Step 3 : Execute imdbserver.js in bash or command prompt using command "node imdbserver.js". Open Chrome browser and enter                        "http://localhost:3000/imdb.html" in browser. It will open website. 
 Step 4 : When you hover on movie image it will show the Movie name, Rating of the movie and like/dislike buttons. Movies are                    categorized as movies playing in theatres, most rated movies, action and comedy movies. These are displayed in rows.
