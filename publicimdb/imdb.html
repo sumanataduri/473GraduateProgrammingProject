@@ -1,0 +1,252 @@
+<!doctype html>
+<html ng-app="myapp">
+
+<head>
+    <title>Project2</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js" type="text/JavaScript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+    <script type="text/javascript" src="imdb.js"></script>
+    <link rel="stylesheet" href="imdb.css">
+    <!--google material icons cdn-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize css-Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <!-- Materialize css-Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+    <div class="row" ng-controller="MoviesinTheatreCtrl">
+        <div ng-controller="registerCtrl">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="" class="brand-logo">IMdb</a>
+                    <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <div id="side-bar">
+
+                        <ul class="right hide-on-med-and-down" ng-hide='beforelogin()'>
+                            <li ng-click='loginopen()'><a href="">Log In</a></li>
+                            <li ng-click='regopen()'><a href="">Register</a></li>
+
+                        </ul>
+                        <ul class="right hide-on-med-and-down" ng-show='afterlogin()'>
+                            <li> Hello User </li>
+                            <li ng-click='logout()'><a href=''>LogOut</a></li>
+                        </ul>
+                        <ul class="right hide-on-med-and-down" ng-show='post()'>
+                            <li ng-click='postopen()'><a href="">Post</a> </li>
+                        </ul>
+
+
+                        <ul class="side-nav" id="mobile-demo" ng-hide='beforelogin()'>
+                            <li ng-click='loginopen()'><a href="">Log In</a></li>
+                            <li ng-click='regopen()'><a href="">Register</a></li>
+
+                        </ul>
+                        <ul class="side-nav" id="mobile-demo" ng-show='afterlogin()'>
+                            <li> Hello User </li>
+                            <li ng-click='logout()'><a href=''>LogOut</a></li>
+                        </ul>
+                        <ul class="side-nav" id="mobile-demo" ng-show='post()'>
+                            <li ng-click='postopen()'><a href="">Post</a> </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+
+
+            <!-- Modal Structure for login -->
+            <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h3>Log In</h3>
+                    <form id='loginform'>
+                        <input size='15' id='username' placeholder='Username' ng-model="loginusername" required="required">
+                        <input size='15' id='password' type='password' placeholder='Password' ng-model='loginpassword' required="required">
+                        <div id='logerror' ng-show="loginError">{{loginError}}</div>
+
+
+                        <a href="" class="modal-action waves-effect waves-green btn-flat "><input type='submit' ng-click="loginSubmit(loginform); loginform.$setPristine()"></a>
+
+                    </form>
+                </div>
+            </div>
+
+
+            <!-- Modal Structure for SignUp -->
+            <div id="modal2" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h3>Register</h3>
+                    <form name='registerform'>
+
+                        <input size='15' name='regUsername' id='regUsername' placeholder='Username' ng-model='username' required="required"></input>
+                        <span ng-show="regUsername.$error.required ">required</span>
+
+                        <input size='15' name='regPassword' id='regPassword' placeholder='Password' ng-model='regpassword' required="required"> </input>
+                        <div id='regerror' ng-show="signupError">{{signupError}}</div>
+
+                        <a href="" class="modal-action waves-effect waves-green btn-flat "><input type='submit' id='registerSubmit' ng-click='registerSubmit(registerform); registerform.$setPristine()'></a>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Modal Structure for Post -->
+            <div id="modal3" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h3>Post Movie Details</h3>
+                    <form id='postform'>
+                        <input size='15' id='postname' placeholder='Movie Name' ng-model="postname" required="required">
+                        <input size='15' id='postlink' placeholder='Movie Image Link' ng-model='postlink' required="required">
+
+                        <label for="postyear"> Select year: </label><br>
+                        <div class='input-field col s12'>
+                            <select name="postYear" id='postyear' material-select ng-model="postyear" ng-options='year for year in years'>
+     
+    </select><br />
+                        </div>
+                        <label> Select Genre: </label><br>
+
+                        <p ng-repeat="genre in genres">
+                            <input type="checkbox" ng-model="genre.v" id="{{$index}}" />
+                            <label for="{{$index}}">{{genre.name}}</label>
+
+                        </p>
+
+                        <div id='posterror' ng-show="postError()">{{postErrorval}}</div>
+
+
+                        <a href="" class="modal-action waves-effect waves-green btn-flat "><input type='submit' ng-click="postSubmit(postform); postform.$setPristine()"></a>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="slider" slider>
+            <ul class="slides" ng-controller="AppCtrl">
+                <li ng-repeat='slide in slides'>
+                    <img ng-src="{{slide.image}}">
+                    <div class="caption center-align">
+                        </div>
+                </li>
+
+            </ul>
+        </div>
+        <br />
+
+        <div class="contain">
+
+            <h1> Best Movie Rated Website </h1>
+
+            <p>
+                Inspired by Eli White's article Performant CSS Animations: Netflix Case Study
+            </p>
+
+
+
+            <h5> Movies in Theatres </h5>
+            <div class="row">
+                <div class="row__inner">
+                    <div class="tile" ng-repeat="latestmovie in latestmovies | filter:{year:2016}: true ">
+                        <div class="tile__media">
+                            <img class="tile__img" ng-src="{{latestmovie.movielink}}" alt="" />
+                        </div>
+                        <div class="tile__details">
+                            <div class="tile__title">
+                                {{latestmovie.moviename}}
+                            </div>
+                            <div class="tile__rating">
+                                <div class='divlike' id='{{latestmovie.moviename}}' ng-click='disabledlike || updateLike(latestmovie)' ng-disabled="disabledlike"> <i id='{{latestmovie.moviename}}' class="material-icons thumbup like">thumb_up</i></div>
+                                <div class='avgrating'>{{latestmovie.rating}} </div>
+                                <div class='divdislike' ng-click='updateDislike(latestmovie)'><i id='{{latestmovie.moviename}}' class="material-icons thumbdown dislike">thumb_down</i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h5>Top Rated Movies</h5>
+            <div class="row">
+                <div class="row__inner">
+                    <div class="tile" ng-repeat="latestmovie in latestmovies |orderBy:'rating':true">
+                        <div class="tile__media">
+                            <img class="tile__img" ng-src="{{latestmovie.movielink}}" alt="" />
+                        </div>
+                        <div class="tile__details">
+                            <div class="tile__title">
+                                {{latestmovie.moviename}}
+                            </div>
+                            <div class="tile__rating">
+                                <div class='divlike' id='{{latestmovie.moviename}}' ng-click='disabledlike || updateLike(latestmovie)' ng-disabled="disabledlike"> <i id='{{latestmovie.moviename}}' class="material-icons thumbup like">thumb_up</i></div>
+                                <div class='avgrating'>{{latestmovie.rating}} </div>
+                                <div class='divdislike' ng-click='updateDislike(latestmovie)'><i id='{{latestmovie.moviename}}' class="material-icons thumbdown dislike">thumb_down</i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <h5> Comedy Movies </h5>
+            <div class="row">
+                <div class="row__inner">
+                    <div class="tile" ng-repeat="latestmovie in latestmovies| filter:{genre:'comedy'}: true">
+                        <div class="tile__media">
+                            <img class="tile__img" ng-src="{{latestmovie.movielink}}" alt="" />
+                        </div>
+                        <div class="tile__details">
+                            <div class="tile__title">
+                                {{latestmovie.moviename}}
+                            </div>
+                            <div class="tile__rating">
+                                <div class='divlike' id='{{latestmovie.moviename}}' ng-click='disabledlike || updateLike(latestmovie)' ng-disabled="disabledlike"> <i id='{{latestmovie.moviename}}' class="material-icons thumbup like">thumb_up</i></div>
+                                <div class='avgrating'>{{latestmovie.rating}} </div>
+                                <div class='divdislike' ng-click='updateDislike(latestmovie)'><i id='{{latestmovie.moviename}}' class="material-icons thumbdown dislike">thumb_down</i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h5> Action Movies </h5>
+            <div class="row">
+                <div class="row__inner">
+                    <div class="tile" ng-repeat="latestmovie in latestmovies| filter:{genre:'action'}: true">
+                        <div class="tile__media">
+                            <img class="tile__img" ng-src="{{latestmovie.movielink}}" alt="" />
+                        </div>
+                        <div class="tile__details">
+                            <div class="tile__title">
+                                {{latestmovie.moviename}}
+                            </div>
+                            <div class="tile__rating">
+                                <div class='divlike' id='{{latestmovie.moviename}}' ng-click='disabledlike || updateLike(latestmovie)' ng-disabled="disabledlike"> <i id='{{latestmovie.moviename}}' class="material-icons thumbup like">thumb_up</i></div>
+                                <div class='avgrating'>{{latestmovie.rating}} </div>
+                                <div class='divdislike' ng-click='updateDislike(latestmovie)'><i id='{{latestmovie.moviename}}' class="material-icons thumbdown dislike">thumb_down</i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="site-footer">
+            <center>Website developed as a Graduate Programming Project <br>By Sumana Thaduri</center>
+        </footer>
+    </div>
+</body>
+
+</html>
