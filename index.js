@@ -3,13 +3,13 @@ var express=require("express"),
 	app=express(),
 	http=require('http');
 
-	 nano.db.create('movies1',function(err,body,header){
+	 nano.db.create('movies',function(err,body,header){
 		if(err){
 			console.log(err);
 		}
 		else{
 
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "Barbershop The next Cut",
       "rating": 1,
       "moviename": "Barbershop The next Cut",
@@ -22,7 +22,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "Batman Vs Superman",
       "rating": 2,
       "moviename": "Batman Vs Superman",
@@ -35,7 +35,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert( {
+		nano.db.use('movies').insert( {
       "_id": "Captain America :Civil War",
       "rating": 2,
       "moviename": "Captain America :Civil War",
@@ -48,7 +48,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert( {
+		nano.db.use('movies').insert( {
       "_id": "Deadpool",
       "rating": 8,
       "moviename": "Deadpool",
@@ -61,7 +61,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "Eye in the Sky",
       "rating": 2,
       "moviename": "Eye in the Sky",
@@ -74,7 +74,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "Hardcore Henry",
       "rating": 12,
       "moviename": "Hardcore Henry",
@@ -87,7 +87,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "Inside Out",
        "rating": 0,
       "moviename": "Inside Out",
@@ -100,7 +100,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "Keanu",
       "rating": 14,
       "moviename": "Keanu",
@@ -113,7 +113,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "Mad Max: Fury Road genre",
       "rating": 10,
       "moviename": "Mad Max: Fury Road genre",
@@ -126,7 +126,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "Mothers Day",
       "rating": 4,
       "moviename": "Mothers Day",
@@ -140,7 +140,7 @@ var express=require("express"),
 			console.log(body1);
 		});
 		
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "My Big Fat Greek Wedding 2",
       "rating": 3,
       "moviename": "My Big Fat Greek Wedding 2",
@@ -153,7 +153,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "The Boss",
       "rating": 4,
       "moviename": "The Boss",
@@ -166,7 +166,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "The Divergent Series: Allegiant",
       "rating": 22,
       "moviename": "The Divergent Series: Allegiant",
@@ -179,7 +179,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "The Huntsman: Winters War",
       "rating": 30,
       "moviename": "The Huntsman: Winters War",
@@ -192,7 +192,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert({
+		nano.db.use('movies').insert({
       "_id": "The Jungle Book",
       "rating": 16,
       "moviename": "The Jungle Book",
@@ -205,7 +205,7 @@ var express=require("express"),
 			}
 			console.log(body1);
 		});
-		nano.db.use('movies1').insert( {
+		nano.db.use('movies').insert( {
       "_id": "Zootopia",
       "rating": 16,
       "moviename": "Zootopia",
@@ -222,13 +222,13 @@ var express=require("express"),
 });
 
 
-nano.db.create('users1',function(err,body,header){
+nano.db.create('users',function(err,body,header){
 		if(err){
 			console.log(err);
 		}
 		else{
 
-		nano.db.use('users1').insert({
+		nano.db.use('users').insert({
    "_id": "sam",
    "name": "sam",
    "password": "sam",
