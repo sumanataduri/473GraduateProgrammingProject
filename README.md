@@ -1,6 +1,6 @@
 # 473GraduateProgrammingProject
 
-Project is done using Angular Js as front end, Node JS and CouchDB as backend.
+Project is done using Angular Js,JQuery, Html, materialize-css,css as front end, Node JS and CouchDB as backend.
 Following are the steps to run this project.
 
 Step 1 : Copy index.js,imdbserver.js and publicimdb folder files to a local folder
